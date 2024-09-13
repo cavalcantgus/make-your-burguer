@@ -1,9 +1,7 @@
 <template>
-    <div>
-        <footer id="footer">
-            <p>Make your burguer &copy; 2024</p>
-        </footer>
-    </div>
+    <footer id="footer">
+        <p>Make your burguer &copy; 2024</p>
+    </footer>
 </template>
 
 <script>
@@ -20,8 +18,9 @@ export default {
         color: rgb(255, 196, 0);
         display: flex;
         align-items: center;
-        justify-content: center;
+        position: absolute;
         bottom: 0;
+        justify-content: center;
         width: 100%;
     }
 </style>

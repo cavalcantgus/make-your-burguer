@@ -3,8 +3,8 @@
         <router-link to="/" id="logo-url">
             <img :src="logo" :alt="alt" id="logo">
         </router-link>
-        <router-link to="/">Home</router-link> |
-        <router-link to="/pedidos">Pedidos</router-link>
+        <router-link to="/" id="homelink">Home</router-link> 
+        <router-link to="/pedidos" id="orderlink">Pedidos</router-link>
     </div>
 </template>
 
@@ -35,17 +35,20 @@ export default {
         height: 40px;
     }
 
-    #nav a {
+    #nav #homelink, #orderlink {
         color: #2c2828;
         text-decoration: none;
         background-color: rgb(255, 196, 0);
         border-radius: 10px;
+        display: inline-block;
+        width: 80px;
+        text-align: center;
         padding: 10px;
         margin: 12px;
-        transition: .5s;
+        transition: .3s;
     }
 
-    #nav a:hover {
-        color: rgb(255, 255, 255);
+    #nav #homelink:hover, #orderlink:hover {
+        background-color: blanchedalmond;
     }
 </style>
