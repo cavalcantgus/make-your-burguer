@@ -18,7 +18,6 @@ export default {
         color: rgb(255, 196, 0);
         display: flex;
         align-items: center;
-        position: absolute;
         bottom: 0;
         justify-content: center;
         width: 100%;
