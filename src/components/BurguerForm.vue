@@ -1,15 +1,30 @@
 <template>
-    <v-dialog v-model="localVisible" width="500px">
+    <v-dialog v-if="localVisible" v-model="localVisible" width="500px">
         <v-card class="custom-card">
             <v-card-title>
                 <span class="card-title">Make your burguer</span>
                 <v-form ref="form">
                     <v-text-field type="text"
                     label="Nome do cliente" class="input-field"></v-text-field>
-                    <v-combobox label="Escolha o pão" class="input-field"></v-combobox>
-                    <v-combobox label="Escolha a carne do seu Burguer" class="input-field"></v-combobox>
-                    <v-span class="opcionais">Selecione os opcionais</v-span>
-                    <v-checkbox label="Salame" class="input-field"></v-checkbox>
+                    <v-combobox 
+                    label="Escolha o pão"
+                    :items="list_breads" 
+                    item-title="tipo"
+                    item-value="id"
+                    v-model="bread"
+                    class="input-field"></v-combobox>
+                    <v-combobox 
+                    label="Escolha a carne do seu Burguer"
+                    :items="list_meats"
+                    item-title="tipo"
+                    item-value="id" 
+                    class="input-field"></v-combobox>
+                    <span class="opcionais">Selecione os opcionais</span>
+                    <v-checkbox class="styled-checkbox" v-for="optional in list_optionals" 
+                    :key="optional.id"
+                    :label="optional.tipo"
+                    :value="optional.id">
+                    </v-checkbox>
                     <v-card-actions>
                         <v-btn class="cancel-button" @click="close">Cancelar</v-btn>
                         <v-btn class="save-button" @click="save">Fazer pedido</v-btn>
@@ -28,21 +43,43 @@ export default {
     },
     data() {
         return {
-            localVisible: this.visible
+            localVisible: this.visible,
+            list_breads: null,
+            list_meats: null,
+            list_optionals: null,
+            client_name: null,
+            bread: null,
+            meat: null,
+            optionals: null,
+            status: "solicitado",
+            msg: null
         }
     },
     watch: {
         visible(newValue) {
-            this.localVisible = newValue
+            if(newValue !== this.localVisible) {
+                this.localVisible = newValue
+            }
         }
     },
     methods: {
+        async getIngredients() {
+            const req = await fetch("http://localhost:3000/ingredientes")
+            const data = await req.json()
+
+            this.list_breads = data.paes
+            this.list_meats = data.carnes
+            this.list_optionals = data.opcionais
+        },
         close() {
             this.$emit('cancel')
         },
         save() {
             this.$emit('save')
         }
+    },
+    mounted() {
+        this.getIngredients()
     }
 }
 </script>
@@ -90,4 +127,5 @@ export default {
         font-size: 16px;
         cursor: pointer;
     }
+
 </style>

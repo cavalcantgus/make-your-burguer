@@ -1,8 +1,11 @@
 <template>
     <div id="nav">
-        <router-link to="/" id="logo-url">
+        <div id="logo-container">
+            <router-link to="/" id="logo-url">
             <img :src="logo" :alt="alt" id="logo">
         </router-link>
+        <span id="logo-name">Make Your Burguer</span>
+        </div>
         <router-link to="/" id="homelink">Home</router-link> 
         <router-link to="/pedidos" id="orderlink">Pedidos</router-link>
     </div>
@@ -18,16 +21,21 @@ export default {
 <style scoped>
     #nav {
         background-color: #222;
-        border-bottom: 4px solid #111;
+        border-bottom: 4mm ridge rgb(255, 196, 0);
         padding: 15px 20px;
         display: flex;
         justify-content: flex-end;
         align-items: center;
     }
 
+    #logo-container {
+        display: flex;
+        align-items: center;
+        margin-right: auto;
+    }
+
     #nav #logo-url {
-        margin: auto;
-        margin-left: 0;
+        margin-right: 10px;
     }
 
     #nav #logo {
@@ -35,20 +43,30 @@ export default {
         height: 40px;
     }
 
+    #logo-name {
+        font-size: 20px;
+        color: #fff;
+        font-weight: bold;
+    }
+
     #nav #homelink, #orderlink {
-        color: #2c2828;
+        color: rgb(255, 196, 0);
         text-decoration: none;
-        background-color: rgb(255, 196, 0);
+        font-weight: bold;
+        border: 3px solid rgb(255, 196, 0);
+        background-color: #222;
         border-radius: 10px;
         display: inline-block;
         width: 80px;
         text-align: center;
-        padding: 10px;
+        padding: 8px ;
         margin: 12px;
         transition: .3s;
     }
 
     #nav #homelink:hover, #orderlink:hover {
-        background-color: blanchedalmond;
+        color: #222;
+        font-weight: bold;
+        background-color: rgb(255, 196, 0);
     }
 </style>
