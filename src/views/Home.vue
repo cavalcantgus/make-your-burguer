@@ -3,7 +3,7 @@
   <div class="main-container">
     <h1>HOME</h1>
     <v-btn color="secundary" @click="showForm">Fazer pedido</v-btn>
-
+    <Carrossel/>
     <BurguerForm
     :visible="formVisible"
     @save="saveOrder"
@@ -14,12 +14,14 @@
 <script>
 import BurguerForm from '@/components/BurguerForm.vue'
 import Banner from '../components/Banner.vue'
+import Carrossel from '../components/Carrossel.vue'
 
 export default {
   name: 'Home',
   components: {
     Banner,
-    BurguerForm
+    BurguerForm,
+    Carrossel
   },
   data() {
     return {
